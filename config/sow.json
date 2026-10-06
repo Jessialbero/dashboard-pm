@@ -1,0 +1,29 @@
+{
+  "project": {"name": "E-commerce B2C Unilever", "client": "Unilever (simulado)"},
+  "jira": {"board_id": 1, "sprint_prefix": "Ecom Sprint", "sp_field": "customfield_10016"},
+  "budget": {"base": 390000, "contingency": 39000},
+  "milestones": [
+    {"id": "H1", "name": "Arquitectura y diseño aprobados", "date": "2026-10-16", "sprint": 1},
+    {"id": "H2", "name": "Catálogo integrado y búsqueda operativa", "date": "2026-10-30", "sprint": 2},
+    {"id": "H3", "name": "Flujo de compra completo en sandbox", "date": "2026-11-13", "sprint": 3},
+    {"id": "H4", "name": "Pagos, logística y cuenta operativos", "date": "2026-11-27", "sprint": 4},
+    {"id": "H5", "name": "Release candidate (QA y carga)", "date": "2026-12-11", "sprint": 5},
+    {"id": "H6", "name": "Go-live en producción", "date": "2026-12-18", "sprint": 6},
+    {"id": "H7", "name": "Cierre de hypercare", "date": "2026-12-23", "sprint": 6}
+  ],
+  "payments": [
+    {"after": "firma", "amount": 78000},
+    {"after": "H2", "amount": 78000},
+    {"after": "H4", "amount": 78000},
+    {"after": "H6", "amount": 97500},
+    {"after": "H7", "amount": 58500}
+  ],
+  "risks": [
+    {"id": "R1", "title": "Demora en accesos o datos del PIM/ERP", "prob": "Alta", "impact": "Alto", "owner": "Referente de IT"},
+    {"id": "R2", "title": "Aprobaciones de diseño o UAT fuera de plazo", "prob": "Media", "impact": "Alto", "owner": "Product Owner"},
+    {"id": "R3", "title": "Retraso en la pasarela de pagos", "prob": "Media", "impact": "Alto", "owner": "Referente de IT"},
+    {"id": "R4", "title": "Cambios de alcance durante el desarrollo", "prob": "Media", "impact": "Medio", "owner": "Project Manager"},
+    {"id": "R5", "title": "Picos de tráfico en el lanzamiento", "prob": "Baja", "impact": "Alto", "owner": "Tech Lead"},
+    {"id": "R6", "title": "Hallazgos críticos en auditoría de seguridad", "prob": "Baja", "impact": "Alto", "owner": "Tech Lead"}
+  ]
+}
