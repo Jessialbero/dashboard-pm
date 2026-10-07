@@ -1,0 +1,13 @@
+# Lo único que completa el PM. Una línea por campo, sin saltos de línea.
+
+comentario: "Sprint 1 cerrado en plazo. En el Sprint 2 la integración con el PIM/ERP está frenada por falta de accesos de Unilever; ya se escaló al Product Owner."
+
+semaforo: auto            # auto | verde | amarillo | rojo (auto = se calcula solo)
+mostrar_montos: false     # false = solo porcentajes, true = montos en USD
+
+# Estado de los riesgos del SOW: Abierto | Materializado | Mitigado
+# Los que no figuren quedan como Abierto.
+riesgo_R1: Materializado
+
+# Motivo de un bloqueo (opcional): bloqueo_<CLAVE>: texto
+bloqueo_SCRUM-15: Unilever aún no entregó los accesos al entorno del PIM/ERP.
