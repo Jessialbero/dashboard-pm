@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estado del proyecto · E-commerce B2C Unilever</title>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6f9;--ink:#13203a;--mute:#5d6b82;--line:#d9dfe8;--blue:#2447d6;--g:#1d8f5a;--a:#c98314;--r:#c23b32;--panel:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1626;--ink:#e6ebf5;--mute:#97a3b8;--line:#26324a;--blue:#7f98ff;--g:#3cc489;--a:#e5a542;--r:#ef6b62;--panel:#151e33}}
+:root[data-theme=dark]{--bg:#0f1626;--ink:#e6ebf5;--mute:#97a3b8;--line:#26324a;--blue:#7f98ff;--g:#3cc489;--a:#e5a542;--r:#ef6b62;--panel:#151e33}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Schibsted Grotesk",system-ui,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:28px 20px 48px}
+h1{font-size:26px;margin:0 0 2px;letter-spacing:-.02em}h2{font-size:16px;margin:0 0 10px}
+.mute{color:var(--mute);font-size:13px}
+.top{display:grid;grid-template-columns:1fr 1.4fr;gap:28px;padding:22px 0;border-bottom:1px solid var(--line)}
+.st{display:flex;align-items:center;gap:12px;font-size:30px;font-weight:700;letter-spacing:-.02em}
+.dot{width:18px;height:18px;border-radius:50%}
+ul{margin:8px 0 0;padding-left:18px}li{margin:2px 0}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--line)}
+.k{padding:18px 16px;border-left:1px solid var(--line)}.k:first-child{border-left:0;padding-left:0}
+.k b{display:block;font-size:28px;letter-spacing:-.02em;line-height:1.1}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:24px 0;border-bottom:1px solid var(--line)}
+.lg{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}.lg i{display:inline-block;width:18px;height:3px;margin-right:6px;vertical-align:middle}
+svg{width:100%;height:auto}.t{font-size:10px;fill:var(--mute)}.gl{stroke:var(--line)}.now{stroke:var(--mute);stroke-dasharray:3 3}
+table{width:100%;border-collapse:collapse;font-size:14px}th{text-align:left;font-weight:600;color:var(--mute);font-size:12px}
+td,th{padding:7px 8px 7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.bar{height:8px;background:var(--line);border-radius:4px;min-width:90px}.bar i{display:block;height:100%;border-radius:4px;background:var(--blue)}
+.pill{font-size:12px;font-weight:600}
+.over{max-width:100%;overflow-x:auto}
+@media(max-width:820px){.top,.row{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.k{border-left:0;padding-left:0}}
+:root{--teal:#0f9fa8;--vio:#7a4fd6}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--teal:#35c2cb;--vio:#a38bff}}
+:root[data-theme=dark]{--teal:#35c2cb;--vio:#a38bff}
+.top{background:linear-gradient(100deg,color-mix(in srgb,var(--sc) 16%,transparent),transparent 65%);padding:22px 18px;border-radius:10px;border-bottom:0;margin-top:14px}
+.k{border-top:3px solid var(--kc)}.k:nth-child(1){--kc:var(--blue)}.k:nth-child(2){--kc:var(--a)}.k:nth-child(3){--kc:var(--r)}.k:nth-child(4){--kc:var(--vio)}.k:nth-child(5){--kc:var(--teal)}
+h2{display:flex;align-items:center;gap:8px}h2:before{content:"";width:4px;height:16px;border-radius:2px;background:var(--blue)}
+.row>div+div h2:before{background:var(--teal)}.vio h2:before{background:var(--vio)}
+select{font:inherit;font-size:13px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);margin:0 8px 10px 0}
+.pie{display:flex;gap:22px;align-items:center;flex-wrap:wrap}.pie svg{width:170px;flex:none}.pie table{flex:1;min-width:220px}
+.sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:8px;vertical-align:-1px}
+</style></head><body><main id="app"><p class="mute">Cargando…</p></main>
+<script>
+const INLINE=null;
+const f=d=>new Date(d+'T12:00').toLocaleDateString('es-AR',{day:'numeric',month:'short'});
+let SHOW=true,BASE=1;const usd=v=>SHOW?'USD '+Math.round(v/1000)+'k':Math.round(100*v/BASE)+'%';
+const C={verde:'var(--g)',amarillo:'var(--a)',rojo:'var(--r)'};
+function chart(c){
+ const W=640,H=250,L=34,R=10,T=20,B=26,n=c.x.length-1,mx=Math.max(...c.series.flatMap(s=>s.p.map(p=>p[1])))*1.05;
+ const X=i=>L+(W-L-R)*i/n,Y=v=>T+(H-T-B)*(1-v/mx);let o=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${c.label}">`;
+ (c.bands||[]).forEach((b,k)=>{o+=`<rect x="${X(b[0])}" y="${T}" width="${X(b[1])-X(b[0])}" height="${H-T-B}" fill="var(--ink)" opacity="${k%2?0:.06}"/><text x="${(X(b[0])+X(b[1]))/2}" y="${T-7}" text-anchor="middle" class="t">${b[2]}</text>`});
+ for(let k=0;k<=4;k++){const v=mx*k/4;o+=`<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" class="gl"/><text x="${L-6}" y="${Y(v)+4}" text-anchor="end" class="t">${Math.round(v)}</text>`}
+ const st=Math.ceil(n/6);c.x.forEach((d,i)=>{if(i%st==0)o+=`<text x="${X(i)}" y="${H-8}" text-anchor="middle" class="t">${i?f(d):'inicio'}</text>`});
+ o+=`<line x1="${X(c.now)}" x2="${X(c.now)}" y1="${T}" y2="${H-B}" class="now"/>`;
+ c.series.forEach(s=>o+=(s.fill?`<polygon points="${X(s.p[0][0])},${Y(0)} ${s.p.map(p=>X(p[0])+','+Y(p[1])).join(' ')} ${X(s.p.at(-1)[0])},${Y(0)}" fill="${s.c}" opacity=".14"/>`:'')+`<polyline fill="none" stroke="${s.c}" stroke-width="${s.w||2.4}" ${s.d?'stroke-dasharray="5 4"':''} points="${s.p.map(p=>X(p[0])+','+Y(p[1])).join(' ')}"/>`);
+ return o+'</svg>'}
+const lg=a=>'<div class="lg mute">'+a.map(([t,c])=>`<span><i style="background:${c}"></i>${t}</span>`).join('')+'</div>';
+const SC2={'Tareas por hacer':'#8d9ab2','Analysis':'var(--vio)','En curso':'var(--blue)','Control de calidad':'var(--teal)','UAT':'var(--g)'};
+function donut(it,tot){const r=52,c=2*Math.PI*r;let off=0;return `<svg viewBox="0 0 140 140" role="img" aria-label="Tareas por estado"><g transform="rotate(-90 70 70)">${it.map(i=>{const l=c*i.n/tot,e=`<circle cx="70" cy="70" r="${r}" fill="none" stroke="${SC2[i.s]||'var(--mute)'}" stroke-width="24" stroke-dasharray="${l} ${c-l}" stroke-dashoffset="${-off}"/>`;off+=l;return e}).join('')}</g><text x="70" y="70" text-anchor="middle" font-size="28" font-weight="700" fill="currentColor">${tot}</text><text x="70" y="88" text-anchor="middle" class="t">tareas</text></svg>`}
+function pie(D){const sp=document.getElementById('ps'),ty=document.getElementById('pt'),out=document.getElementById('pc');
+ const run=()=>{const t=D.tasks.filter(x=>x.s==sp.value&&(ty.value=='*'||x.type==ty.value)),g={};
+  t.forEach(x=>{g[x.status]=g[x.status]||{s:x.status,n:0,sp:0};g[x.status].n++;g[x.status].sp+=x.sp});const it=Object.values(g);
+  out.innerHTML=t.length?`<div class="pie">${donut(it,t.length)}<table><tr><th>Estado</th><th>Tareas</th><th>Puntos</th></tr>${it.map(i=>`<tr><td><i class="sw" style="background:${SC2[i.s]||'var(--mute)'}"></i>${i.s}</td><td>${i.n}</td><td>${i.sp}</td></tr>`).join('')}</table></div>`:'<p class="mute">No hay tareas con este filtro.</p>'};
+ sp.onchange=ty.onchange=run;run()}
+function render(D){SHOW=D.budget.show_amounts!==false;BASE=D.budget.base;
+ const k=D.kpis,s=D.status.override||D.status.auto,col=C[s];
+ document.getElementById('app').innerHTML=`
+ <h1>${D.project.name}</h1><div class="mute">${D.project.client} · datos al ${f(D.project.asOf)} · fuentes: Jira, SOW y entrada del PM</div>
+ <section class="top" style="--sc:${col}"><div><div class="st"><span class="dot" style="background:${col}"></span>${s[0].toUpperCase()+s.slice(1)}</div>
+  <ul>${D.status.reasons.map(r=>`<li>${r}</li>`).join('')}</ul>${D.status.override?'<p class="mute">Semáforo fijado por el PM.</p>':'<p class="mute">Semáforo calculado automáticamente.</p>'}</div>
+  <div><h2>Comentario del PM</h2><p style="margin:0">${D.pm.comment}</p></div></section>
+ <section class="kpis">
+  <div class="k"><b>${k.pct}%</b>avance<div class="mute">${k.done_sp} de ${k.total_sp} story points</div></div>
+  <div class="k"><b style="color:${k.delay>0?C.amarillo:C.verde}">${f(k.forecast_end)}</b>fin proyectado<div class="mute">plan: ${f(D.project.end)} (${k.delay>0?'+'+k.delay+' días':'a tiempo'})</div></div>
+  <div class="k"><b style="color:${k.blocked?C.rojo:C.verde}">${k.blocked}</b>bloqueos<div class="mute">issues con impedimento</div></div>
+  <div class="k"><b>${k.spi}</b>índice de ritmo<div class="mute">1,00 = según plan</div></div>
+  <div class="k"><b>${usd(D.budget.earned)}</b>valor ganado<div class="mute">${SHOW?'':'del presupuesto · '}plan ${usd(D.budget.planned)} · facturado ${usd(D.budget.invoiced)} de ${usd(D.budget.base)}</div></div></section>
+ <section class="row"><div><h2>Burndown del proyecto</h2>${lg([['Real',C.verde.replace('--g','--blue')],['Ideal','var(--mute)'],['Proyección','var(--a)']])}<div id="c1"></div></div>
+  <div><h2>Burndown de ${D.sprintChart.name}</h2>${lg([['Real','var(--blue)'],['Ideal','var(--mute)']])}<div id="c2"></div></div></section>
+ <section class="row vio" style="grid-template-columns:1fr"><div><h2>Tareas por estado</h2>
+  <select id="ps" aria-label="Sprint">${D.sprints.map((x,i)=>`<option value="${i+1}" ${x.state=='En curso'?'selected':''}>${x.name}</option>`).join('')}</select>
+  <select id="pt" aria-label="Tipo de issue"><option value="*">Todos los tipos</option>${[...new Set(D.tasks.map(t=>t.type))].map(t=>`<option>${t}</option>`).join('')}</select><div id="pc"></div></div></section>
+ <section class="row"><div class="over"><h2>Sprints</h2><table><tr><th>Sprint</th><th>Fechas</th><th>Puntos</th><th>Avance</th></tr>
+  ${D.sprints.map(x=>`<tr><td>${x.name}<div class="mute">${x.state}</div></td><td>${f(x.start)} – ${f(x.end)}</td><td>${x.done}/${x.planned}</td><td><div class="bar"><i style="background:${x.state=='Cerrado'?'var(--g)':x.state=='En curso'?'var(--blue)':'var(--line)'};width:${Math.round(100*x.done/x.planned)}%"></i></div></td></tr>`).join('')}</table></div>
+  <div class="over"><h2>Bloqueos</h2>${D.blocked.map(b=>`<p style="margin:0 0 8px"><b>${b.key}</b> ${b.summary}<br><span class="mute">Desde el ${f(b.since)}. ${b.reason}</span></p>`).join('')||'<p class="mute">Sin bloqueos.</p>'}
+  <h2 style="margin-top:18px">Hitos</h2><table>${D.milestones.map(m=>`<tr><td>${m.id}</td><td>${m.name}</td><td>${f(m.date)}</td><td class="pill" style="color:${C[m.color]}">${m.status}</td></tr>`).join('')}</table></div></section>
+ <section class="over" style="padding-top:24px"><h2>Riesgos</h2><table><tr><th>#</th><th>Riesgo</th><th>Prob.</th><th>Impacto</th><th>Responsable</th><th>Estado</th></tr>
+  ${D.risks.map(r=>`<tr><td>${r.id}</td><td>${r.title}</td><td>${r.prob}</td><td>${r.impact}</td><td>${r.owner}</td><td class="pill" style="color:${C[r.color]}">${r.status}</td></tr>`).join('')}</table></section>`;
+ pie(D);
+ const P=D.burndownProject,S=D.sprintChart;
+ c1.innerHTML=chart({label:'Burndown del proyecto',x:P.x,now:P.now,bands:P.bands,series:[{p:P.ideal,c:'var(--mute)',w:1.6},{p:P.actual,c:'var(--blue)',fill:1},{p:P.forecast,c:'var(--a)',d:1}]});
+ c2.innerHTML=chart({label:'Burndown del sprint',x:S.x,now:S.now,series:[{p:S.ideal,c:'var(--mute)',w:1.6},{p:S.actual,c:'var(--blue)',fill:1}]});
+}
+fetch('data.json').then(r=>r.json()).catch(()=>INLINE).then(render);
+</script></body></html>
